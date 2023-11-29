@@ -1,5 +1,5 @@
 +++
-title = 'InverseFallacy'
+title = 'Inverse Fallacy'
 date = 2023-11-29T16:29:00+01:00
 draft = false
 mathjax = true
