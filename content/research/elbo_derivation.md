@@ -5,37 +5,23 @@ draft = false
 mathjax = true
 +++
 
-To derive the [[ELBO - Evidence Lower Bound]] (ELBO) we start with [[Latent Variable Models]]. Latent variable models take an indirect approach to describing a complex probability distribution $P(x)$ over a multidimensional variable $x$. The approach models $P(x)$ with a joint probability distribution $P(x,z)$ over $x$ and a hidden latent variable $z$. The probability distribution $P(x,z)$ is then marginalised w.r.t. $z$ to obtain $P(x).
-$$\operatorname{Pr}(\mathbf{x})=\int \operatorname{Pr}(\mathbf{x}, \mathbf{z}) d \mathbf{z}
-$$
+To derive the [[ELBO - Evidence Lower Bound]] (ELBO) we start with [[Latent Variable Models]]. Latent variable models take an indirect approach to describing a complex probability distribution $P(x)$ over a multidimensional variable $x$. The approach models $P(x)$ with a joint probability distribution $P(x,z)$ over $x$ and a hidden latent variable $z$. The probability distribution $P(x,z)$ is then marginalised w.r.t. $z$ to obtain $P(x)$.
+
+$$\operatorname{Pr}(\mathbf{x})=\int \operatorname{Pr}(\mathbf{x}, \mathbf{z}) d \mathbf{z}$$
+
 This term is relatively useless and has to be broken down using the product rule of probabilities ([[Interactions between Random Variables]]).
-$$
-\operatorname{Pr}(\mathbf{x})=\int \operatorname{Pr}(\mathbf{x} \mid \mathbf{z}) \operatorname{Pr}(\mathbf{z}) d \mathbf{z}
-$$
-In principle this is a good procedure, because it allows us to describe complex probability distributions with simple components. 
 
->[! Example: Mixture of Gaussians]
->Example: mixture of Gaussians
-In a $1 \mathrm{D}$ mixture of Gaussians (figure 17.1a), the latent variable $z$ is discrete, and the prior $\operatorname{Pr}(z)$ is a categorical distribution (figure 5.9) with one probability $\lambda_n$ for each possible value of $z$. The likelihood $\operatorname{Pr}(x \mid z=n)$ of the data $x$ given that the latent variable $z$ takes value $n$ is normally distributed with mean $\mu_n$ and variance $\sigma_n^2$ :
-> $$\begin{aligned}\operatorname{Pr}(z=n) & =\lambda_n\\\operatorname{Pr}(x \mid z=n) & =\operatorname{Norm}_x\left[\mu_n, \sigma_n^2\right]\end{aligned}$$
-> As in equation 17.2 , the likelihood $\operatorname{Pr}(x)$ is given by the marginalization over the latent variable $z$ (figure $17.1 \mathrm{~b}$ ). Here, the latent variable is discrete, so we sum over its possible values to marginalize:
-> $$\begin{aligned}\operatorname{Pr}(x) & =\sum_{n=1}^N\operatorname{Pr}(x, z=n) \\& =\sum_{n=1}^N \operatorname{Pr}(x \mid z=n) \cdot \operatorname{Pr}(z=n) \\& =\sum_{n=1}^N \lambda_n \cdot \operatorname{Norm}_x\left[\mu_n, \sigma_n^2\right]\end{aligned}$$
-> From simple expressions for the likelihood and prior, we describe a complex multi-modal probability distribution.
-> Hold ⌘ for visual example: [[Mixture_of_Gaussians.png]]
+$$\operatorname{Pr}(\mathbf{x})=\int \operatorname{Pr}(\mathbf{x} \mid \mathbf{z}) \operatorname{Pr}(\mathbf{z}) d \mathbf{z}$$
 
-In contrast to the simple example above, the integral for $P(x,z)$ is intractable for more complex multivariate and continuous data and latent variables. 
+In principle this is a good procedure, because it allows us to describe complex probability distributions with simple components. The integral for $P(x,z)$ is intractable for more complex multivariate and continuous data and latent variables. 
+
 ## Training for LVM 
-Like in all models (see: [[Parameterisating Conditional Distributions with Neural Networks]]) we want to maximise the log-likelihood over a training dataset: 
-
-$$
-\hat{\boldsymbol{\phi}}=\underset{\phi}{\operatorname{argmax}}\left[\sum_{i=1}^I \log \left[\operatorname{Pr}\left(\mathbf{x}_i \mid \phi\right)\right]\right]
-$$
+Like in all models we want to maximise the log-likelihood over a training dataset:
+$$\hat{\boldsymbol{\phi}}=\underset{\phi}{\operatorname{argmax}}\left[\sum_{i=1}^I \log \left[\operatorname{Pr}\left(\mathbf{x}_i \mid \phi\right)\right]\right]$$
 where:
-$$
-\operatorname{Pr}\left(\mathbf{x}_i \mid \phi\right)=\int \operatorname{Norm}_{\mathbf{x}_i}\left[\mathbf{f}[\mathbf{z}, \phi], \sigma^2 \mathbf{I}\right] \cdot \operatorname{Norm}_{\mathbf{z}}[\mathbf{0}, \mathbf{I}] d \mathbf{z}
-$$
+$$\operatorname{Pr}\left(\mathbf{x}_i \mid \phi\right)=\int \operatorname{Norm}_{\mathbf{x}_i}\left[\mathbf{f}[\mathbf{z}, \phi], \sigma^2 \mathbf{I}\right] \cdot\operatorname{Norm}_{\mathbf{z}}[\mathbf{0}, \mathbf{I}] d \mathbf{z}$$
 Hence:
-$$\hat{\boldsymbol{\phi}}=\underset{\phi}{\operatorname{argmax}}\left[\sum_{i=1}^I \log \left[\int \operatorname{Norm}_{\mathbf{x}_i}\left[\mathbf{f}[\mathbf{z}, \phi], \sigma^2 \mathbf{I}\right] \cdot \operatorname{Norm}_{\mathbf{z}}[\mathbf{0}, \mathbf{I}] d \mathbf{z}\right]\right]$$
+$$\hat{\boldsymbol{\phi}}=\underset{\phi}{\operatorname{argmax}}\left[\sum_{i=1}^I \log \left[\int \operatorname{Norm}_{\mathbf{x}_i}\left[\mathbf{f}[\mathbf{z}, \phi],\sigma^2 \mathbf{I}\right] \cdot \operatorname{Norm}_{\mathbf{z}}[\mathbf{0}, \mathbf{I}] d \mathbf{z}\right]\right]$$
 where our neural network predicts the $\mu$ of the the likelihood function. However, as eluded before, this is intractable and hence we need to find an appropriate approximation. This approximation is the ELBO - Evidence Lower Bound. 
 
 ## Deriving the ELBO from Jensen's Inequality
@@ -51,10 +37,9 @@ or writing out the expression for the expectation in full, we have:
 $$
 \log \left[\int \operatorname{Pr}(y) y d y\right] \geq \int \operatorname{Pr}(y) \log [y] d y
 $$
-(see script __jensens_inequality.ipynb__) 
 
 ## Deriving the ELBO in Detail
-There are multiple equivalent forms of the ELBO that can be derived with the Jensen's Inequality. We start initially with the log-likelihood of the distribution we want to approximate with the ELBO. In the case here, it is the data distribution $P(x) = \int P(x,z)dz = \int P(z) \times P(x|z)dz$ is the expected value of the data likelihood. (see: [[Expected Values and Latent Variable Models]]). 
+There are multiple equivalent forms of the ELBO that can be derived with the Jensen's Inequality. We start initially with the log-likelihood of the distribution we want to approximate with the ELBO. In the case here, it is the data distribution $P(x) = \int P(x,z)dz = \int P(z) \times P(x|z)dz$ is the expected value of the data likelihood. 
 
 To derive the ELBO from first principles we start with the log-likelihood.  We multiply the original log-likelihood with an arbitrary PDF $q(x)$ resulting in the following expression:
 $$
@@ -70,6 +55,7 @@ $$
 $$
 
 The right side is the Evidence Lower Bound (ELBO). Usually, the arbitrary PDF is also parameterised with a neural network and has the parameters $\theta$. Hence the expression for the ELBO is: 
+
 $$
 \operatorname{ELBO}[\boldsymbol{\theta}, \boldsymbol{\phi}]=\int q(\mathbf{z} \mid \boldsymbol{\theta}) \log \left[\frac{\operatorname{Pr}(\mathbf{x}, \mathbf{z} \mid \boldsymbol{\phi})}{q(\mathbf{z} \mid \boldsymbol{\theta})}\right] d \mathbf{z}
 $$
