@@ -17,11 +17,11 @@ In principle this is a good procedure, because it allows us to describe complex 
 
 ## Training for LVM 
 Like in all models we want to maximise the log-likelihood over a training dataset:
-$$\hat{\boldsymbol{\phi}}=\underset{\phi}{\operatorname{argmax}}\left[\sum_{i=1}^I \log \left[\operatorname{Pr}\left(\mathbf{x}_i \mid \phi\right)\right]\right]$$
+$$\hat{\boldsymbol{\phi}}=\underset{\phi}{\operatorname{argmax}}\left[\sum_{i=1}^I\log \left[\operatorname{Pr}\left(\mathbf{x}_i \mid \phi\right)\right]\right]$$
 where:
-$$\operatorname{Pr}\left(\mathbf{x}_i \mid \phi\right)=\int \operatorname{Norm}_{\mathbf{x}_i}\left[\mathbf{f}[\mathbf{z}, \phi], \sigma^2 \mathbf{I}\right] \cdot\operatorname{Norm}_{\mathbf{z}}[\mathbf{0}, \mathbf{I}] d \mathbf{z}$$
+$$\operatorname{Pr}\left(\mathbf{x}_i \mid \phi\right)=\int \operatorname{Norm}_{\mathbf{x}_i}\left[\mathbf{f}[\mathbf{z}, \phi], \sigma^2 \mathbf{I}\right\cdot\operatorname{Norm}_{\mathbf{z}}[\mathbf{0}, \mathbf{I}] d \mathbf{z}$$
 Hence:
-$$\hat{\boldsymbol{\phi}}=\underset{\phi}{\operatorname{argmax}}\left[\sum_{i=1}^I \log \left[\int \operatorname{Norm}_{\mathbf{x}_i}\left[\mathbf{f}[\mathbf{z}, \phi],\sigma^2 \mathbf{I}\right] \cdot \operatorname{Norm}_{\mathbf{z}}[\mathbf{0}, \mathbf{I}] d \mathbf{z}\right]\right]$$
+$$\hat{\boldsymbol{\phi}}=\underset{\phi}{\operatorname{argmax}}\left[\sum_{i=1}^I\log \left[\int \operatorname{Norm}_{\mathbf{x}_i}\left[\mathbf{f}[\mathbf{z},\phi],\sigma^2 \mathbf{I}\right] \cdot \operatorname{Norm}_{\mathbf{z}}[\mathbf{0},\mathbf{I}] d \mathbf{z}\right]\right]$$
 where our neural network predicts the $\mu$ of the the likelihood function. However, as eluded before, this is intractable and hence we need to find an appropriate approximation. This approximation is the ELBO - Evidence Lower Bound. 
 
 ## Deriving the ELBO from Jensen's Inequality
