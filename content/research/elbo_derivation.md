@@ -1,5 +1,5 @@
 +++
-title = 'Elbo_derivation'
+title = 'Derivation of the ELBO in VAEs'
 date = 2023-11-29T18:10:15+01:00
 draft = false
 mathjax = true
