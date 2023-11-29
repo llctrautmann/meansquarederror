@@ -22,13 +22,7 @@ $$\hat{\boldsymbol{\phi}}=\underset{\phi}{\operatorname{argmax}}\left[\sum_{i=1}
 
 where:
 
-$$
-\operatorname{Pr}\left(\mathbf{x}_i \mid \phi\right)=\int \operatorname{Norm}_{\mathbf{x}_i}\left[\mathbf{f}[\mathbf{z}, \phi], \sigma^2 \mathbf{I}\right]\cdot\operatorname{Norm}_{\mathbf{z}}[\mathbf{0}, \mathbf{I}] d \mathbf{z}
-$$
-
-Hence:
-
-$$\hat{\boldsymbol{\phi}}=\underset{\phi}{\operatorname{argmax}}\left[\sum_{i=1}^{I}\log \left[\int \operatorname{Norm}_{\mathbf{x}_i}\left[\mathbf{f}[\mathbf{z},\phi],\sigma^2 \mathbf{I}\right] \cdot \operatorname{Norm}_{\mathbf{z}}[\mathbf{0},\mathbf{I}] d \mathbf{z}\right]\right]$$
+$$\operatorname{Pr}\left(\mathbf{x}_i \mid \phi\right)=\int \mathcal{N}_x\left[\mathbf{f}[\mathbf{z}, \phi], \sigma^2 \mathbf{I} \right] \cdot\mathcal{N}_z[\mathbf{0}, \mathbf{I}] d \mathbf{z}$$
 
 where our neural network predicts the $\mu$ of the the likelihood function. However, as eluded before, this is intractable and hence we need to find an appropriate approximation. This approximation is the ELBO - Evidence Lower Bound. 
 
@@ -50,12 +44,12 @@ $$
 There are multiple equivalent forms of the ELBO that can be derived with the Jensen's Inequality. We start initially with the log-likelihood of the distribution we want to approximate with the ELBO. In the case here, it is the data distribution $P(x) = \int P(x,z)dz = \int P(z) \times P(x|z)dz$ is the expected value of the data likelihood. 
 
 To derive the ELBO from first principles we start with the log-likelihood.  We multiply the original log-likelihood with an arbitrary PDF $q(x)$ resulting in the following expression:
-$$
-\begin{aligned}
-\log [\operatorname{Pr}(\mathbf{x} \mid \phi)] & =\log \left[\int \operatorname{Pr}(\mathbf{x}, \mathbf{z} \mid \phi) d \mathbf{z}\right] \\
+
+\begin{align*}
+\log [\operatorname{Pr}(\mathbf{x} \mid \phi)] & =\log \left[\int \operatorname{Pr}(\mathbf{x}, \mathbf{z} \mid \phi) d \mathbf{z}\right] \\\\\\
 & =\log \left[\int q(\mathbf{z}) \frac{\operatorname{Pr}(\mathbf{x}, \mathbf{z} \mid \boldsymbol{\phi})}{q(\mathbf{z})} d \mathbf{z}\right]
-\end{aligned}
-$$
+\end{align*}
+
 In the context of the ELBO, we can then write the Jensen's Inequality as follows:
 
 $$
@@ -89,19 +83,19 @@ Using the product rule of probabilities we <mark style="background: #FFB8EBA6;">
 $$\mathrm{ELBO}[\boldsymbol{\theta}, \boldsymbol{\phi}] =\int q(\mathbf{z} \mid \boldsymbol{\theta}) \log \left[\frac{\operatorname{Pr}(\mathbf{z} \mid \mathbf{x}, \boldsymbol{\phi}) \operatorname{Pr}(\mathbf{x} \mid \boldsymbol{\phi})}{q(\mathbf{z} \mid \boldsymbol{\theta})}\right] d \mathbf{z}
 $$
 
-and with the<mark style="background: #FFB8EBA6;"> log rule</mark> ( $\log(\frac{ab}{c}) = \log{a} + \log{b} - \log{c}$ ) we get the following expressions:
+and with the log rule ( $\log(\frac{ab}{c}) = \log{a} + \log{b} - \log{c}$ ) we get the following expressions:
 
-$$\begin{aligned}
-\mathrm{ELBO}[\boldsymbol{\theta}, \boldsymbol{\phi}] &= \int q(\mathbf{z} \mid \boldsymbol{\theta}) \biggl(\log[\operatorname{Pr}(\mathbf{x} \mid \boldsymbol{\phi})] +  \log[\operatorname{Pr}(\mathbf{z} \mid \mathbf{x}, \boldsymbol{\phi})] - \log[\operatorname{Pr}(\mathbf{z} \mid \boldsymbol{\theta})] \biggr)
-\\&=\int q(\mathbf{z} \mid \boldsymbol{\theta}) \log [\operatorname{Pr}(\mathbf{x} \mid \boldsymbol{\phi})] d \mathbf{z}+\int q(\mathbf{z} \mid \boldsymbol{\theta}) \log \left[\frac{\operatorname{Pr}(\mathbf{z} \mid \mathbf{x}, \boldsymbol{\phi})}{q(\mathbf{z} \mid \boldsymbol{\theta})}\right] d \mathbf{z}
-\end{aligned}$$
+\begin{align*}
+\mathrm{ELBO}[\boldsymbol{\theta}, \boldsymbol{\phi}] &= \int q(\mathbf{z} \mid \boldsymbol{\theta}) \biggl(\log[\operatorname{Pr}(\mathbf{x} \mid \boldsymbol{\phi})] +  \log[\operatorname{Pr}(\mathbf{z} \mid \mathbf{x}, \boldsymbol{\phi})] - \log[\operatorname{Pr}(\mathbf{z} \mid \boldsymbol{\theta})] \biggr)\\\\\\
+&=\int q(\mathbf{z} \mid \boldsymbol{\theta}) \log [\operatorname{Pr}(\mathbf{x} \mid \boldsymbol{\phi})] d \mathbf{z}+\int q(\mathbf{z} \mid \boldsymbol{\theta}) \log \left[\frac{\operatorname{Pr}(\mathbf{z} \mid \mathbf{x}, \boldsymbol{\phi})}{q(\mathbf{z} \mid \boldsymbol{\theta})}\right] d \mathbf{z}
+\end{align*}
 
-The first integral collapses to 1 and the second and third log can be written as a fraction:
+The first integral collapses to 1 (note: The integral of unbounded PDF = 1) and the second and third log can be written as a fraction:
 $$
-\mathrm{ELBO}[\boldsymbol{\theta}, \boldsymbol{\phi}] =\log [\operatorname{Pr}(\mathbf{x} \mid \boldsymbol{\phi})]+\int q(\mathbf{z} \mid \boldsymbol{\theta}) \log \left[\frac{\operatorname{Pr}(\mathbf{z} \mid \mathbf{x}, \boldsymbol{\phi})}{q(\mathbf{z} \mid \boldsymbol{\theta})}\right] d \mathbf{z} \quad \text{| Integral of PDF = 1}
+\mathrm{ELBO}[\boldsymbol{\theta}, \boldsymbol{\phi}] =\log [\operatorname{Pr}(\mathbf{x} \mid \boldsymbol{\phi})]+\int q(\mathbf{z} \mid \boldsymbol{\theta}) \log \left[\frac{\operatorname{Pr}(\mathbf{z} \mid \mathbf{x}, \boldsymbol{\phi})}{q(\mathbf{z} \mid \boldsymbol{\theta})}\right] d \mathbf{z}
 $$
 
-This then leads to the final form of the ELBO, which is the original log-likelihood minus the KL Divergence (see [[Kullback-Leibler (KL) divergence]]).
+This then leads to the final form of the ELBO, which is the original log-likelihood minus the KL Divergence.
 $$
 \mathrm{ELBO}[\boldsymbol{\theta}, \boldsymbol{\phi}] =\log [\operatorname{Pr}(\mathbf{x} \mid \boldsymbol{\phi})]-\mathrm{D}_{K L}[q(\mathbf{z} \mid \boldsymbol{\theta}) \| \operatorname{Pr}(\mathbf{z} \mid \mathbf{x}, \boldsymbol{\phi})]
 $$
@@ -110,32 +104,16 @@ From this follows that, the KL distance will be zero, and the bound will be tigh
 
 ## ELBO as reconstruction loss minus KL distance to prior
 Depending on the breakdown of the logarithm in the original version of the ELBO, an equivalent form can be generated. 
-$$
-\begin{aligned}
-\mathrm{ELBO}[\boldsymbol{\theta}, \boldsymbol{\phi}] & =\int q(\mathbf{z} \mid \boldsymbol{\theta}) \log \left[\frac{\operatorname{Pr}(\mathbf{x}, \mathbf{z} \mid \boldsymbol{\phi})}{q(\mathbf{z} \mid \boldsymbol{\theta})}\right] d \mathbf{z} \\
-& =\int q(\mathbf{z} \mid \boldsymbol{\theta}) \log \left[\frac{\operatorname{Pr}(\mathbf{x} \mid \mathbf{z}, \boldsymbol{\phi}) \operatorname{Pr}(\mathbf{z})}{q(\mathbf{z} \mid \boldsymbol{\theta})}\right] d \mathbf{z} \\
-& =\int q(\mathbf{z} \mid \boldsymbol{\theta}) \log [\operatorname{Pr}(\mathbf{x} \mid \mathbf{z}, \boldsymbol{\phi})] d \mathbf{z}+\int q(\mathbf{z} \mid \boldsymbol{\theta}) \log \left[\frac{\operatorname{Pr}(\mathbf{z})}{q(\mathbf{z} \mid \boldsymbol{\theta})}\right] d \mathbf{z} \\
-& =\int q(\mathbf{z} \mid \boldsymbol{\theta}) \log [\operatorname{Pr}(\mathbf{x} \mid \mathbf{z}, \boldsymbol{\phi})] d \mathbf{z}-\mathrm{D}_{K L}[q(\mathbf{z} \mid \boldsymbol{\theta}) \| \operatorname{Pr}(\mathbf{z})],
-\end{aligned}
-$$
 
-$$
-\begin{aligned}
-\mathrm{ELBO}[\mathbf{\theta}, \mathbf{\phi}] & =\int q(\mathbf{z} \mid \mathbf{\theta}) \log \left[\frac{\operatorname{Pr}(\mathbf{x}, \mathbf{z} \mid \mathbf{\phi})}{q(\mathbf{z} \mid \mathbf{\theta})}\right] d \mathbf{z} \\
-& =\int q(\mathbf{z} \mid \mathbf{\theta}) \log \left[\frac{\operatorname{Pr}(\mathbf{x} \mid \mathbf{z}, \mathbf{\phi}) \operatorname{Pr}(\mathbf{z})}{q(\mathbf{z} \mid \mathbf{\theta})}\right] d \mathbf{z} \\
-& =\int q(\mathbf{z} \mid \mathbf{\theta}) \log [\operatorname{Pr}(\mathbf{x} \mid \mathbf{z}, \mathbf{\phi})] d \mathbf{z}+\int q(\mathbf{z} \mid \mathbf{\theta}) \log \left[\frac{\operatorname{Pr}(\mathbf{z})}{q(\mathbf{z} \mid \mathbf{\theta})}\right] d \mathbf{z} \\
+\begin{align*}
+\mathrm{ELBO}[\mathbf{\theta}, \mathbf{\phi}] & =\int q(\mathbf{z} \mid \mathbf{\theta}) \log \left[\frac{\operatorname{Pr}(\mathbf{x}, \mathbf{z} \mid \mathbf{\phi})}{q(\mathbf{z} \mid \mathbf{\theta})}\right] d \mathbf{z} \\\\\\
+& =\int q(\mathbf{z} \mid \mathbf{\theta}) \log \left[\frac{\operatorname{Pr}(\mathbf{x} \mid \mathbf{z}, \mathbf{\phi}) \operatorname{Pr}(\mathbf{z})}{q(\mathbf{z} \mid \mathbf{\theta})}\right] d \mathbf{z} \\\\\\
+& =\int q(\mathbf{z} \mid \mathbf{\theta}) \log [\operatorname{Pr}(\mathbf{x} \mid \mathbf{z}, \mathbf{\phi})] d \mathbf{z}+\int q(\mathbf{z} \mid \mathbf{\theta}) \log \left[\frac{\operatorname{Pr}(\mathbf{z})}{q(\mathbf{z} \mid \mathbf{\theta})}\right] d \mathbf{z} \\\\\\
 & =\int q(\mathbf{z} \mid \mathbf{\theta}) \log [\operatorname{Pr}(\mathbf{x} \mid \mathbf{z}, \mathbf{\phi})] d \mathbf{z}-\mathrm{D}_{K L}[q(\mathbf{z} \mid \mathbf{\theta}) \| \operatorname{Pr}(\mathbf{z})],
-\end{aligned}
-$$
+\end{align*}
 
-In this formulation, the first term measures the average agreement P r(x|z, ϕ) of the latent variable and the data. This is termed the reconstruction loss. The second term measures the degree to which the auxiliary distribution q(z|θ) matches the prior. <mark style="background: #FFB86CA6;">This formulation is the one that is used in the variational autoencoder. </mark>
+In this formulation, the first term measures the average agreement $P r(x|z, \phi)$ of the latent variable and the data. This is termed the reconstruction loss. The second term measures the degree to which the auxiliary distribution $q(z|\theta)$ matches the prior. 
+
+This formulation is the one that is used in the VAE.
 
 
-$$
-\begin{aligned}
-\mathrm{ELBO}[\mathbf{\theta}, \mathbf{\phi}] & =\int q(\mathbf{z} \mid \mathbf{\theta}) \log \left[\frac{\operatorname{Pr}(\mathbf{x}, \mathbf{z} \mid \mathbf{\phi})}{q(\mathbf{z} \mid \mathbf{\theta})}\right] d \mathbf{z} \\
-& =\int q(\mathbf{z} \mid \mathbf{\theta}) \log \left[\frac{\operatorname{Pr}(\mathbf{x} \mid \mathbf{z}, \mathbf{\phi}) \operatorname{Pr}(\mathbf{z})}{q(\mathbf{z} \mid \mathbf{\theta})}\right] d \mathbf{z} \\
-& =\int q(\mathbf{z} \mid \mathbf{\theta}) \log [\operatorname{Pr}(\mathbf{x} \mid \mathbf{z}, \mathbf{\phi})] d \mathbf{z}+\int q(\mathbf{z} \mid \mathbf{\theta}) \log \left[\frac{\operatorname{Pr}(\mathbf{z})}{q(\mathbf{z} \mid \mathbf{\theta})}\right] d \mathbf{z} \\
-& =\int q(\mathbf{z} \mid \mathbf{\theta}) \log [\operatorname{Pr}(\mathbf{x} \mid \mathbf{z}, \mathbf{\phi})] d \mathbf{z}-\mathrm{D}_{K L}[q(\mathbf{z} \mid \mathbf{\theta}) \| \operatorname{Pr}(\mathbf{z})],
-\end{aligned}
-$$
