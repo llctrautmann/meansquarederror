@@ -1,0 +1,36 @@
+[[entries]]
+title = "info"
+
+  [[entries.entries]]
+  title = "Probabilistic ML database | opinions"
+
+  [[entries.entries]]
+  title = "github"
+  url = "https://github.com/llctrautmann"
+
+
+[[entries]]
+title = "research"
+
+  [entries.post_list]
+  section = "research"
+  limit = 5
+  show_more = true
+  show_more_text = "See more research..."
+  show_more_url = "research"
+
+[[entries]]
+title = "opinions"
+
+  [entries.post_list]
+  section = "opinion"
+  limit = 5
+  show_more = true
+  show_more_text = "See more opinions..."
+  show_more_url = "opinions"
+
+[[entries]]
+title = "rss"
+url = "index.xml"
+
+
