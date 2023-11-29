@@ -130,3 +130,12 @@ $$
 
 In this formulation, the first term measures the average agreement P r(x|z, ϕ) of the latent variable and the data. This is termed the reconstruction loss. The second term measures the degree to which the auxiliary distribution q(z|θ) matches the prior. <mark style="background: #FFB86CA6;">This formulation is the one that is used in the variational autoencoder. </mark>
 
+
+$$
+\begin{aligned}
+\mathrm{ELBO}[\mathbf{\theta}, \mathbf{\phi}] & =\int q(\mathbf{z} \mid \mathbf{\theta}) \log \left[\frac{\operatorname{Pr}(\mathbf{x}, \mathbf{z} \mid \mathbf{\phi})}{q(\mathbf{z} \mid \mathbf{\theta})}\right] d \mathbf{z} \\
+& =\int q(\mathbf{z} \mid \mathbf{\theta}) \log \left[\frac{\operatorname{Pr}(\mathbf{x} \mid \mathbf{z}, \mathbf{\phi}) \operatorname{Pr}(\mathbf{z})}{q(\mathbf{z} \mid \mathbf{\theta})}\right] d \mathbf{z} \\
+& =\int q(\mathbf{z} \mid \mathbf{\theta}) \log [\operatorname{Pr}(\mathbf{x} \mid \mathbf{z}, \mathbf{\phi})] d \mathbf{z}+\int q(\mathbf{z} \mid \mathbf{\theta}) \log \left[\frac{\operatorname{Pr}(\mathbf{z})}{q(\mathbf{z} \mid \mathbf{\theta})}\right] d \mathbf{z} \\
+& =\int q(\mathbf{z} \mid \mathbf{\theta}) \log [\operatorname{Pr}(\mathbf{x} \mid \mathbf{z}, \mathbf{\phi})] d \mathbf{z}-\mathrm{D}_{K L}[q(\mathbf{z} \mid \mathbf{\theta}) \| \operatorname{Pr}(\mathbf{z})],
+\end{aligned}
+$$
