@@ -35,6 +35,6 @@ theme = 'nostyleplease'
 
 [params]
   [params.theme_config]
-    appearance = "auto"
+    appearance = "light"
     back_home_text = "cd .."
     date_format = "2006-01-02"
