@@ -5,6 +5,7 @@ draft = false
 +++
 
 
+![Retention](/images/retention.png)
 
 {{< video src="/video/weights.mp4">}}
 <!-- {{< video src="/video/weights.mp4" autoplay="true" loop="true" >}} -->
