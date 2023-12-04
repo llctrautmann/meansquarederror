@@ -21,7 +21,7 @@ title = "research"
 
   [entries.post_list]
   section = "research"
-  limit = 5
+  limit = 10
   show_more = true
   show_more_text = "See more research..."
   show_more_url = "research"
@@ -31,7 +31,7 @@ title = "opinions"
 
   [entries.post_list]
   section = "opinion"
-  limit = 5
+  limit = 10
   show_more = true
   show_more_text = "See more opinions..."
   show_more_url = "opinions"
