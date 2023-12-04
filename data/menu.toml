@@ -8,6 +8,13 @@ title = "info"
   title = "github"
   url = "https://github.com/llctrautmann"
 
+  [entries.post_list]
+  section = "cv"
+  limit = 1
+  show_more = false
+
+  
+
 
 [[entries]]
 title = "research"
