@@ -1,0 +1,5 @@
+<figure {{ with .Get "class" }}class="{{ . }}"{{ end }} style="display: flex; justify-content: center;">
+    <audio controls controlsList="nodownload" preload="{{ .Get "preload" | default "metadata" }}">
+      {{ with .Get "src" }}<source src="{{ . }}" type="audio/mpeg">{{ end }}
+    </audio>
+</figure>
