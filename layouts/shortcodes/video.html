@@ -1,5 +1,5 @@
 <div style="display: flex; justify-content: center;">
-  <video controls {{ if eq (.Get "autoplay") "true" }}autoplay{{ end }} {{ if eq (.Get "loop") "true" }}loop{{ end }}>
+  <video {{ if eq (.Get "autoplay") "true" }}autoplay{{ end }} {{ if eq (.Get "loop") "true" }}loop{{ end }}>
     <source src="{{ .Get "src" }}" type="video/mp4">
     Your browser does not support the video tag.
   </video>
