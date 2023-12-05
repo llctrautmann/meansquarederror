@@ -1,5 +1,5 @@
 +++
-title = 'Weigths'
+title = 'Weights'
 date = 2023-12-03T01:11:18+01:00
 draft = false
 +++

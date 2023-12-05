@@ -36,6 +36,17 @@ title = "opinions"
   show_more_text = "See more opinions..."
   show_more_url = "opinions"
 
+
+[[entries]]
+title = "meditation"
+
+  [entries.post_list]
+  section = "meditation"
+  limit = 10
+  show_more = true
+  show_more_text = "See more opinions..."
+  show_more_url = "opinions"
+
 [[entries]]
 title = "rss"
 url = "index.xml"
