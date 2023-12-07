@@ -5,17 +5,17 @@ draft = false
 mathjax = true
 +++
 
-To derive the [[ELBO - Evidence Lower Bound]] (ELBO) we start with [[Latent Variable Models]]. Latent variable models take an indirect approach to describing a complex probability distribution $P(x)$ over a multidimensional variable $x$. The approach models $P(x)$ with a joint probability distribution $P(x,z)$ over $x$ and a hidden latent variable $z$. The probability distribution $P(x,z)$ is then marginalised w.r.t. $z$ to obtain $P(x)$.
+To derive the [Evidence Lower Bound (ELBO)]({{< ref "elbo.md" >}}) we start with Latent Variable Models. Latent variable models take an indirect approach to describing a complex probability distribution $P(x)$ over a multidimensional variable $x$. The approach models $P(x)$ with a joint probability distribution $P(x,z)$ over $x$ and a hidden latent variable $z$. The probability distribution $P(x,z)$ is then marginalised w.r.t. $z$ to obtain $P(x)$.
 
 $$\operatorname{Pr}(\mathbf{x})=\int \operatorname{Pr}(\mathbf{x}, \mathbf{z}) d \mathbf{z}$$
 
-This term is relatively useless and has to be broken down using the product rule of probabilities ([[Interactions between Random Variables]]).
+This term is relatively useless and has to be broken down:
 
 $$\operatorname{Pr}(\mathbf{x})=\int \operatorname{Pr}(\mathbf{x} \mid \mathbf{z}) \operatorname{Pr}(\mathbf{z}) d \mathbf{z}$$
 
 In principle this is a good procedure, because it allows us to describe complex probability distributions with simple components. The integral for $P(x,z)$ is intractable for more complex multivariate and continuous data and latent variables. 
 
-## Training for LVM 
+## Training for Latent Variable Models 
 Like in all models we want to maximise the log-likelihood over a training dataset:
 
 $$\hat{\boldsymbol{\phi}}=\underset{\phi}{\operatorname{argmax}}\left[\sum_{i=1}^{I}\log \left[\operatorname{Pr}\left(\mathbf{x}_i \mid \phi\right)\right]\right]$$
