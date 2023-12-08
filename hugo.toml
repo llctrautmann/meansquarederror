@@ -1,6 +1,6 @@
 baseURL = ''
 languageCode = 'en-us'
-title = 'Mean Squared Error | LLCT'
+title = 'Mean Squared Error | llct'
 theme = 'nostyleplease'
 
 [module]

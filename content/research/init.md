@@ -5,6 +5,4 @@ draft = false
 mathjax = true
 +++
 
-We need more opinions.
-
-
+We need more opinions. 
