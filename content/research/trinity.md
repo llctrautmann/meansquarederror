@@ -5,7 +5,7 @@ draft = false
 mathjax = true
 +++
 
-The basic idea behind the basic of probability theory can be summarised in an outrageously compressed form in the following collection of symbols: 
+The basic idea behind probability theory can be summarised in an outrageously compressed form in the following collection of symbols: 
 
 $$\left[\Omega,\mathcal{F},X^{-1},X_\mathbb{R},\mathbb{P}_{[0,1]}\right]$$
 
