@@ -5,8 +5,6 @@ draft: false
 mathjax: true
 ---
 
-# Dense Block
-
 ```python
 import torch
 import torch.nn as nn
