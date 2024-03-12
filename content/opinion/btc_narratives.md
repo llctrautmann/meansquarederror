@@ -35,7 +35,7 @@ The nuance that gets lost in the reduction is the difference between monetary de
 
 One big narrative in Bitcoin goes as follows: "Bitcoin is a protection again out of control money printing by the central banks around the world". A very popular meme to underline this argument, is the famous Jay Powell (FED Chair 2018-present) printing crisp green backs.
 
-{{<figure src="/images/brrr.jpeg" title="Jay Powell 'Printing Money'">}}
+{{<figure src="/meansquarederror/images/brrr.jpeg" title="Jay Powell 'Printing Money'">}}
 
 The problem with that meme/rallying cry is that it does not fundamentally match reality.
 
