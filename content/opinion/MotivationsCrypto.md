@@ -1,6 +1,6 @@
 +++
 title = 'Fudamental Motivations in Crypto'
-date = 2023-01-17T09:50:50+01:00
+date = 2024-01-17T09:50:50+01:00
 draft = false
 +++
 
