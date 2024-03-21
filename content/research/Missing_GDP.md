@@ -6,7 +6,7 @@ draft = false
 
 One of the most striking calculations I have been doing in a while was graphically visualise the difference in GDP in the US (an the rest of the world) since the GFC.
 
-{{<figure src="/meansquarederror/images/US_GDP_Gap.png)" title="Missing GDP since 2008">}}
+{{<figure src="/meansquarederror/images/US_GDP_Gap.png" title="Missing GDP since 2008">}}
 
 
 Plotting the GDP shows a significant deviation from trend. In the image above what you can see is that the US had an L-shaped recovery since 2008, with the actual produced GDP far underperforming given the previous trendline set since the beginning of the Eurodollar system.
