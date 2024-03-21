@@ -1,7 +1,7 @@
 +++
 title = 'The Missing GDP'
 date = 2024-03-21T21:22:37+01:00
-draft = true
+draft = false
 +++
 
 One of the most striking calculations I have been doing in a while was graphically visualise the difference in GDP in the US (an the rest of the world) since the GFC.
