@@ -11,4 +11,4 @@ One of the most striking calculations I have been doing in a while was graphical
 
 Plotting the GDP shows a significant deviation from trend. In the image above what you can see is that the US had an L-shaped recovery since 2008, with the actual produced GDP far underperforming given the previous trendline set since the beginning of the Eurodollar system.
 
-This is undoubtably a major issue. 
+This is undoubtably a major issue. And it is an even worse picture, when looking at it from an international standpoint. 
