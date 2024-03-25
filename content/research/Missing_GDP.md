@@ -15,6 +15,6 @@ This is undoubtably a major issue. And it is an even worse picture, when looking
 
 Look at the graph that the German GDP produces.
 
-{{<figure src="/meansquarederror/images/United States_projection.png" title="Missing GDP in Germany since 2008">}}
+{{<figure src="/meansquarederror/images/Germany_projection.png" title="Missing GDP in Germany since 2008">}}
 
 I do not wonder anymore why crazy politicians pop up in Germany any more. 
