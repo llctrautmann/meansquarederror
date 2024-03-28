@@ -25,6 +25,12 @@ Liquidity risk exists because Lehman needs to always have enough liquidity avail
 
 
 ## Final Days of Lehman Brother's 
+To understand what happened to Lehman Brother's we need to introduce three key players:
+1. The FED
+2. JP Morgan
+3. Other large investment banks
+
+The tldr is: JP Morgen and the FED both played key roles in bringing down Lehman and it all revolves around collateral. 
 
 
 ## What about Today?
