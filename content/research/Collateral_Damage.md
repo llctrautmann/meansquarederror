@@ -2,8 +2,9 @@
 title = 'Collateral Damage'
 date = 2024-03-26T17:52:23+01:00
 draft = true
+toc = true
 +++
-
+# Intro 
 Reading up on the demise of Lehman brothers is a facinating story. Granted most people are not interested in the details of the collapse, and usually attribute everything to bad loans due to the housing market bust in the US. But the more nerdy among us start to read the documents produced in the wake of the bankruptsy to understand what the main issue really was. Why did Lehman Brother's the titan of wall street really fail? And the number one word that describes the entire situation is **collateral**.
 
 ## Collateral and Repo in Financial Markets

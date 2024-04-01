@@ -1,54 +1,55 @@
 [[entries]]
-title = "info"
+title = "Personal"
 
-  [[entries.entries]]
-  title = "Probabilistic ML database | opinions"
+# [[entries.entries]]
+# title = "Probabilistic ML database | opinions"
 
-  [[entries.entries]]
-  title = "github"
-  url = "https://github.com/llctrautmann"
+[[entries.entries]]
+title = "cv"
+url = "https://github.com/llctrautmann/meansquarederror/blob/main/static/pdfs/CV_published.pdf"
 
-  [entries.post_list]
-  section = "cv"
-  limit = 1
-  show_more = false
 
-  
+[[entries.entries]]
+title = "github"
+url = "https://github.com/llctrautmann"
+
+[entries.post_list]
+section = "cv"
+limit = 1
+show_more = false
 
 
 [[entries]]
 title = "research"
 
-  [entries.post_list]
-  section = "research"
-  limit = 10
-  show_more = true
-  show_more_text = "See more research..."
-  show_more_url = "research"
+[entries.post_list]
+section = "research"
+limit = 7
+show_more = true
+show_more_text = "See more research..."
+show_more_url = "research"
 
 [[entries]]
 title = "opinions"
 
-  [entries.post_list]
-  section = "opinion"
-  limit = 10
-  show_more = true
-  show_more_text = "See more opinions..."
-  show_more_url = "opinions"
+[entries.post_list]
+section = "opinion"
+limit = 7
+show_more = true
+show_more_text = "See more opinions..."
+show_more_url = "opinion"
 
 
 [[entries]]
 title = "meditation"
 
-  [entries.post_list]
-  section = "meditation"
-  limit = 10
-  show_more = true
-  show_more_text = "See more opinions..."
-  show_more_url = "opinions"
+[entries.post_list]
+section = "meditation"
+limit = 10
+show_more = true
+show_more_text = "See more opinions..."
+show_more_url = "opinions"
 
 [[entries]]
 title = "rss"
 url = "index.xml"
-
-
