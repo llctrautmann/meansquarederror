@@ -1,6 +1,6 @@
 baseURL = 'https://llctrautmann.github.io/meansquarederror/'
 languageCode = 'en-us'
-title = 'Mean Squared Error | llct'
+title = 'FwdBwd | llct'
 theme = ['hugo-embed-pdf-shortcode', 'nostyleplease']
 enableInlineShortcodes = true
 
