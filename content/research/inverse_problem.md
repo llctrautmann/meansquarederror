@@ -1,5 +1,5 @@
 +++
-title = 'Elbo'
+title = 'Inverse Problems'
 date = 2025-07-11T15:06:38+01:00
 draft = false
 mathjax = true
